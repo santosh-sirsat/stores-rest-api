@@ -19,11 +19,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False;
 app.secret_key = 'jose';
 api = Api(app);
 
-@app.before_first_request
-def create_tables():
-    db.create_all();
-from resources.store import Store, StoreList;
-
 jwt = JWT(app, authenticate, identity)# create new end point /auth
 
 api.add_resource(Store, '/store/<string:name>');# http://127.0.0.1:5000/store/Dell-store
